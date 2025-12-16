@@ -13,7 +13,7 @@
 
 ## 🎬 Tentang Project
 
-**Cinema CRM & Ticketing System** adalah aplikasi **Customer Relationship Management (CRM)** berbasis web yang dirancang untuk mendukung operasional aplikasi bioskop (seperti TIX ID).
+**Cinema CRM & Ticketing System** adalah aplikasi **Customer Relationship Management (CRM)** berbasis web yang dirancang untuk mendukung operasional aplikasi bioskop.
 
 Sistem ini membantu pengelolaan **data customer, riwayat interaksi, ticket/complaint**, serta **sales pipeline** dalam satu platform terpusat dengan dukungan **role-based access**.
 
@@ -97,8 +97,3 @@ Project ini dibangun menggunakan **Laravel** sebagai backend framework.
 Project ini dikembangkan untuk keperluan **pembelajaran dan pengembangan sistem CRM**.  
 Framework Laravel dilisensikan di bawah **MIT License**.
 
----
-
-## ✨ Catatan
-
-README ini telah disesuaikan dari template default Laravel untuk kebutuhan aplikasi CRM Ticketing Bioskop.
