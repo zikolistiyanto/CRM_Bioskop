@@ -36,15 +36,16 @@ Route::get('/users/{id}', [UserController::class, 'show'])
     ->name('users.show');
 
 /*
-|--------------------------------------------------------------------------
-| Customer Management (CRM CUSTOMER)
-|--------------------------------------------------------------------------
+|-------------------------------------------------------------------------- 
+| Customer Management
+|-------------------------------------------------------------------------- 
 */
-Route::get('/customers', [CustomerController::class, 'index'])
-    ->name('customers.index');
+Route::get('/customer', function () {
+    return view('backend.customer.index');
+})->name('customer.index');
 
-Route::get('/customers/{id}', [CustomerController::class, 'show'])
-    ->name('customers.show');
+Route::get('/customer/{id}', [CustomerController::class, 'show'])
+    ->name('customer.show');
 
 /*
 |--------------------------------------------------------------------------
