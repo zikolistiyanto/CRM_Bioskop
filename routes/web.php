@@ -29,8 +29,9 @@ Route::get('/dashboard', function () {
 | User Management (INTERNAL USER)
 |--------------------------------------------------------------------------
 */
-Route::get('/users', [UserController::class, 'index'])
-    ->name('users.index');
+Route::get('/user', function () {
+    return view('backend.user.index');
+})->name('user.index');
 
 Route::get('/users/{id}', [UserController::class, 'show'])
     ->name('users.show');
@@ -53,11 +54,13 @@ Route::get('/customer/{id}', [CustomerController::class, 'show'])
 |--------------------------------------------------------------------------
 | Jangan dipanggil dulu di UI
 */
-Route::get('/tickets', [TicketController::class, 'index'])
-    ->name('tickets.index');
+Route::get('/ticket', function () {
+    return view('backend.ticket.index');
+})->name('ticket.index');
+
 
 Route::get('/tickets/{id}', [TicketController::class, 'show'])
-    ->name('tickets.show');
+    ->name('ticket.show');
 
 /*
 |--------------------------------------------------------------------------

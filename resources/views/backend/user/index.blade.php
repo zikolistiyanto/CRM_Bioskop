@@ -1,14 +1,14 @@
 @extends('backend.layouts.app')
 
-@section('title', 'Customer Management')
+@section('title', 'User Management')
 
 @section('content')
 
 {{-- Header --}}
 <div class="row mb-4">
     <div class="col">
-        <h4 class="fw-bold mb-1">Customer Management</h4>
-        <p class="text-muted mb-0">Data pelanggan aplikasi ticketing bioskop</p>
+        <h4 class="fw-bold mb-1">User Management</h4>
+        <p class="text-muted mb-0">Kelola akun internal sistem CRM</p>
     </div>
 </div>
 
@@ -18,11 +18,11 @@
         <div class="card">
             <div class="card-body d-flex justify-content-between">
                 <div>
-                    <span>Total Customers</span>
-                    <h3 class="my-2">1,245</h3>
+                    <span>Total Users</span>
+                    <h3 class="my-2">12</h3>
                 </div>
                 <span class="avatar-initial rounded bg-label-primary">
-                    <i class="ti ti-user ti-sm"></i>
+                    <i class="ti ti-users ti-sm"></i>
                 </span>
             </div>
         </div>
@@ -32,11 +32,11 @@
         <div class="card">
             <div class="card-body d-flex justify-content-between">
                 <div>
-                    <span>Active</span>
-                    <h3 class="my-2">1,020</h3>
+                    <span>Admin</span>
+                    <h3 class="my-2">2</h3>
                 </div>
-                <span class="avatar-initial rounded bg-label-success">
-                    <i class="ti ti-user-check ti-sm"></i>
+                <span class="avatar-initial rounded bg-label-danger">
+                    <i class="ti ti-shield ti-sm"></i>
                 </span>
             </div>
         </div>
@@ -46,11 +46,11 @@
         <div class="card">
             <div class="card-body d-flex justify-content-between">
                 <div>
-                    <span>Inactive</span>
-                    <h3 class="my-2">225</h3>
+                    <span>Customer Service</span>
+                    <h3 class="my-2">6</h3>
                 </div>
-                <span class="avatar-initial rounded bg-label-warning">
-                    <i class="ti ti-user-x ti-sm"></i>
+                <span class="avatar-initial rounded bg-label-info">
+                    <i class="ti ti-headset ti-sm"></i>
                 </span>
             </div>
         </div>
@@ -60,7 +60,7 @@
 {{-- Table --}}
 <div class="card">
     <div class="card-header border-bottom">
-        <h5 class="card-title mb-0">Customer List</h5>
+        <h5 class="card-title mb-0">User List</h5>
     </div>
 
     <div class="table-responsive">
@@ -70,28 +70,25 @@
                     <th>#</th>
                     <th>Name</th>
                     <th>Email</th>
-                    <th>Phone</th>
+                    <th>Role</th>
                     <th>Status</th>
-                    <th>Last Interaction</th>
                 </tr>
             </thead>
             <tbody>
                 {{-- Dummy --}}
                 <tr>
                     <td>1</td>
-                    <td>Andi Pratama</td>
-                    <td>andi@gmail.com</td>
-                    <td>08123456789</td>
+                    <td>Admin CRM</td>
+                    <td>admin@crm.com</td>
+                    <td><span class="badge bg-danger">Admin</span></td>
                     <td><span class="badge bg-success">Active</span></td>
-                    <td>2025-01-10</td>
                 </tr>
                 <tr>
                     <td>2</td>
-                    <td>Siti Rahma</td>
-                    <td>siti@gmail.com</td>
-                    <td>082233445566</td>
-                    <td><span class="badge bg-warning">Inactive</span></td>
-                    <td>2024-12-20</td>
+                    <td>Rina CS</td>
+                    <td>rina@crm.com</td>
+                    <td><span class="badge bg-info">CS</span></td>
+                    <td><span class="badge bg-success">Active</span></td>
                 </tr>
             </tbody>
         </table>
