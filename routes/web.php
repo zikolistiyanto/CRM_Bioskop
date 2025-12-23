@@ -29,24 +29,16 @@ Route::get('/dashboard', function () {
 | User Management (INTERNAL USER)
 |--------------------------------------------------------------------------
 */
-Route::get('/user', function () {
-    return view('backend.user.index');
-})->name('user.index');
 
-Route::get('/users/{id}', [UserController::class, 'show'])
-    ->name('users.show');
-
+Route::resource('users', UserController::class); // web routes for UserController
 /*
 |-------------------------------------------------------------------------- 
 | Customer Management
 |-------------------------------------------------------------------------- 
 */
-Route::get('/customer', function () {
-    return view('backend.customer.index');
-})->name('customer.index');
 
-Route::get('/customer/{id}', [CustomerController::class, 'show'])
-    ->name('customer.show');
+Route::resource('customers', CustomerController::class);
+
 
 /*
 |--------------------------------------------------------------------------
