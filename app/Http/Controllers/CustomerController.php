@@ -15,10 +15,19 @@ class CustomerController extends Controller
     }
 
     /**
-     * Tampilkan detail customer (nanti)
+     * Tampilkan detail customer
      */
     public function show($id)
     {
-        return view('backend.customer.show');
+        // sementara dummy data
+        $customer = [
+            'id' => $id,
+            'name' => 'Andi Pratama',
+            'email' => 'andi@gmail.com',
+            'phone' => '+62 812-3456-7890',
+            'status' => 'Active'
+        ];
+
+        return view('backend.customer.show', compact('customer'));
     }
 }

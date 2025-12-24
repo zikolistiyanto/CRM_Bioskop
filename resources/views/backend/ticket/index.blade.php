@@ -97,7 +97,11 @@
                 <tr>
                     <td>1</td>
                     <td>Andi Pratama</td>
-                    <td>Gagal bayar tiket</td>
+                    <td>
+                        <a href="{{ route('ticket.show', 1) }}" class="fw-semibold text-primary">
+                            Gagal bayar tiket
+                        </a>
+                    </td>
                     <td><span class="badge bg-warning">Open</span></td>
                     <td>CS - Rina</td>
                     <td>2025-01-10</td>

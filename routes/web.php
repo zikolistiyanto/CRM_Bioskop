@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\TicketController;
+use App\Http\Controllers\PipelineController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,9 +51,8 @@ Route::get('/customer/{id}', [CustomerController::class, 'show'])
 
 /*
 |--------------------------------------------------------------------------
-| Ticketing / Complaint (DISIAPKAN, BELUM DIPAKAI)
+| Ticketing / Complaint 
 |--------------------------------------------------------------------------
-| Jangan dipanggil dulu di UI
 */
 Route::get('/ticket', function () {
     return view('backend.ticket.index');
@@ -61,6 +61,18 @@ Route::get('/ticket', function () {
 
 Route::get('/tickets/{id}', [TicketController::class, 'show'])
     ->name('ticket.show');
+
+Route::put('/ticket/{id}/status', [TicketController::class, 'updateStatus'])
+    ->name('ticket.updateStatus');
+
+    
+/*--------------------------------------------------------------------------
+| Pipeline Management
+|--------------------------------------------------------------------------*/
+Route::get('/pipeline', [PipelineController::class, 'index'])
+    ->name('pipeline.index');
+
+
 
 /*
 |--------------------------------------------------------------------------

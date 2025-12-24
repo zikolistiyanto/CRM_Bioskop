@@ -53,6 +53,14 @@
             </a>
         </li>
 
+        {{-- PIPELINE --}}
+        <li class="menu-item">
+            <a href="{{ route('pipeline.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons ti ti-clipboard-list"></i>
+                <div>Pipeline</div>
+            </a>
+        </li>
+
         {{-- USER MANAGEMENT --}}
         <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">

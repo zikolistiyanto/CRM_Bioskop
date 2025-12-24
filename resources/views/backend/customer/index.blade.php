@@ -73,6 +73,7 @@
                     <th>Phone</th>
                     <th>Status</th>
                     <th>Last Interaction</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -84,7 +85,13 @@
                     <td>08123456789</td>
                     <td><span class="badge bg-success">Active</span></td>
                     <td>2025-01-10</td>
+                    <td>
+                        <a href="{{ route('customer.show', 1) }}" class="btn btn-sm btn-primary">
+                            Detail
+                        </a>
+                    </td>
                 </tr>
+
                 <tr>
                     <td>2</td>
                     <td>Siti Rahma</td>
@@ -92,6 +99,11 @@
                     <td>082233445566</td>
                     <td><span class="badge bg-warning">Inactive</span></td>
                     <td>2024-12-20</td>
+                    <td>
+                        <a href="{{ route('customer.show', 2) }}" class="btn btn-sm btn-primary">
+                            Detail
+                        </a>
+                    </td>
                 </tr>
             </tbody>
         </table>
