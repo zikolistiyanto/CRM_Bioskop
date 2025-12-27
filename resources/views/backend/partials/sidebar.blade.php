@@ -47,7 +47,7 @@
 
         {{-- TICKETING --}}
         <li class="menu-item">
-            <a href="{{ route('ticket.index') }}" class="menu-link">
+            <a href="{{ route('tickets.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons ti ti-headset"></i>
                 <div>Tickets</div>
             </a>
@@ -55,7 +55,7 @@
 
         {{-- PIPELINE --}}
         <li class="menu-item">
-            <a href="{{ route('pipeline.index') }}" class="menu-link">
+            <a href="{{ route('pipelines.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons ti ti-clipboard-list"></i>
                 <div>Pipeline</div>
             </a>
@@ -69,7 +69,7 @@
             </a>
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="{{ route('user.index') }}" class="menu-link">
+                    <a href="{{ route('users.index') }}" class="menu-link">
                         <div>User List</div>
                     </a>
                 </li>
@@ -84,7 +84,7 @@
             </a>
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="{{ route('customer.index') }}" class="menu-link">
+                    <a href="{{ route('customers.index') }}" class="menu-link">
                         <div>Customer List</div>
                     </a>
                 </li>

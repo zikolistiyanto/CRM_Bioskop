@@ -14,12 +14,12 @@
 
 {{-- Summary Cards --}}
 <div class="row g-4 mb-4">
-    <div class="col-sm-6 col-xl-3">
+    <div class="col-sm-6 col-xl-4">
         <div class="card">
             <div class="card-body d-flex justify-content-between align-items-start">
                 <div>
                     <span>Total Tickets</span>
-                    <h3 class="my-2">128</h3>
+                    <h3 class="my-2">{{ $tickets->total() }}</h3>
                 </div>
                 <span class="avatar-initial rounded bg-label-primary">
                     <i class="ti ti-ticket ti-sm"></i>
@@ -28,12 +28,12 @@
         </div>
     </div>
 
-    <div class="col-sm-6 col-xl-3">
+    <div class="col-sm-6 col-xl-4">
         <div class="card">
             <div class="card-body d-flex justify-content-between align-items-start">
                 <div>
                     <span>Open</span>
-                    <h3 class="my-2">42</h3>
+                    <h3 class="my-2">{{ \App\Models\Ticket::where('status_ticket', 'Open')->count() }}</h3>
                 </div>
                 <span class="avatar-initial rounded bg-label-warning">
                     <i class="ti ti-alert-circle ti-sm"></i>
@@ -42,26 +42,12 @@
         </div>
     </div>
 
-    <div class="col-sm-6 col-xl-3">
-        <div class="card">
-            <div class="card-body d-flex justify-content-between align-items-start">
-                <div>
-                    <span>In Progress</span>
-                    <h3 class="my-2">31</h3>
-                </div>
-                <span class="avatar-initial rounded bg-label-info">
-                    <i class="ti ti-loader ti-sm"></i>
-                </span>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-sm-6 col-xl-3">
+    <div class="col-sm-6 col-xl-4">
         <div class="card">
             <div class="card-body d-flex justify-content-between align-items-start">
                 <div>
                     <span>Resolved</span>
-                    <h3 class="my-2">55</h3>
+                    <h3 class="my-2">{{ \App\Models\Ticket::where('status_ticket', 'Resolved')->count() }}</h3>
                 </div>
                 <span class="avatar-initial rounded bg-label-success">
                     <i class="ti ti-check ti-sm"></i>
@@ -75,55 +61,51 @@
 <div class="card">
     <div class="card-header border-bottom d-flex justify-content-between align-items-center">
         <h5 class="card-title mb-0">Daftar Ticket</h5>
-        <button class="btn btn-primary btn-sm">
-            <i class="ti ti-plus me-1"></i> Buat Ticket
-        </button>
+        <!-- Button trigger modal for Add Ticket would go here -->
     </div>
 
     <div class="table-responsive">
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>#</th>
                     <th>Customer</th>
                     <th>Issue</th>
                     <th>Status</th>
-                    <th>Assigned To</th>
+                    <th>Created By</th>
                     <th>Created At</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                {{-- Dummy data manual --}}
+                @forelse($tickets as $ticket)
                 <tr>
-                    <td>1</td>
-                    <td>Andi Pratama</td>
+                    <td>{{ $ticket->customer->name ?? '-' }}</td>
                     <td>
-                        <a href="{{ route('ticket.show', 1) }}" class="fw-semibold text-primary">
-                            Gagal bayar tiket
+                        <a href="{{ route('tickets.show', $ticket->id) }}" class="fw-semibold text-primary">
+                            {{ $ticket->issue }}
                         </a>
                     </td>
-                    <td><span class="badge bg-warning">Open</span></td>
-                    <td>CS - Rina</td>
-                    <td>2025-01-10</td>
+                    <td>
+                        <span class="badge bg-{{ $ticket->status_ticket == 'Open' ? 'warning' : 'success' }}">
+                            {{ $ticket->status_ticket }}
+                        </span>
+                    </td>
+                    <td>{{ $ticket->creator->name ?? 'System' }}</td>
+                    <td>{{ $ticket->created_at->format('d/m/Y') }}</td>
+                    <td>
+                        <a href="{{ route('tickets.show', $ticket->id) }}" class="btn btn-sm btn-primary">Detail</a>
+                    </td>
                 </tr>
+                @empty
                 <tr>
-                    <td>2</td>
-                    <td>Siti Rahma</td>
-                    <td>Tiket tidak muncul</td>
-                    <td><span class="badge bg-info">In Progress</span></td>
-                    <td>CS - Budi</td>
-                    <td>2025-01-09</td>
+                    <td colspan="6" class="text-center">No tickets found.</td>
                 </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Fajar Nugroho</td>
-                    <td>Refund belum diterima</td>
-                    <td><span class="badge bg-success">Resolved</span></td>
-                    <td>CS - Rina</td>
-                    <td>2025-01-08</td>
-                </tr>
+                @endforelse
             </tbody>
         </table>
+    </div>
+    <div class="card-footer">
+        {{ $tickets->links() }}
     </div>
 </div>
 

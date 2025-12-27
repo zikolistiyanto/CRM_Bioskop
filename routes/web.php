@@ -6,77 +6,34 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\PipelineController;
+use App\Http\Controllers\LeadController;
+use App\Http\Controllers\InteractionController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
-| Default / Landing Page
+| Default / Dashboard
 |--------------------------------------------------------------------------
 */
-Route::get('/', function () {
-    return view('backend.dashboard.index');
-})->name('home');
+Route::get('/', [DashboardController::class, 'index'])->name('home');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 /*
 |--------------------------------------------------------------------------
-| Dashboard
+| Resource Routes
 |--------------------------------------------------------------------------
 */
-Route::get('/dashboard', function () {
-    return view('backend.dashboard.index');
-})->name('dashboard');
+Route::resource('users', UserController::class)->only(['index', 'show']);
+Route::resource('customers', CustomerController::class);
+Route::resource('tickets', TicketController::class);
+Route::put('tickets/{id}/status', [TicketController::class, 'updateStatus'])->name('tickets.updateStatus');
+Route::resource('leads', LeadController::class);
+Route::resource('interactions', InteractionController::class)->only(['index', 'store', 'destroy']);
+Route::get('/pipelines', [PipelineController::class, 'index'])->name('pipelines.index');
 
 /*
 |--------------------------------------------------------------------------
-| User Management (INTERNAL USER)
-|--------------------------------------------------------------------------
-*/
-Route::get('/user', function () {
-    return view('backend.user.index');
-})->name('user.index');
-
-Route::get('/users/{id}', [UserController::class, 'show'])
-    ->name('users.show');
-
-/*
-|-------------------------------------------------------------------------- 
-| Customer Management
-|-------------------------------------------------------------------------- 
-*/
-Route::get('/customer', function () {
-    return view('backend.customer.index');
-})->name('customer.index');
-
-Route::get('/customer/{id}', [CustomerController::class, 'show'])
-    ->name('customer.show');
-
-/*
-|--------------------------------------------------------------------------
-| Ticketing / Complaint 
-|--------------------------------------------------------------------------
-*/
-Route::get('/ticket', function () {
-    return view('backend.ticket.index');
-})->name('ticket.index');
-
-
-Route::get('/tickets/{id}', [TicketController::class, 'show'])
-    ->name('ticket.show');
-
-Route::put('/ticket/{id}/status', [TicketController::class, 'updateStatus'])
-    ->name('ticket.updateStatus');
-
-    
-/*--------------------------------------------------------------------------
-| Pipeline Management
-|--------------------------------------------------------------------------*/
-Route::get('/pipeline', [PipelineController::class, 'index'])
-    ->name('pipeline.index');
-
-
-
-/*
-|--------------------------------------------------------------------------
-| Auth (BELUM DIPAKAI)
+| Auth
 |--------------------------------------------------------------------------
 */
 Route::get('/login', function () {

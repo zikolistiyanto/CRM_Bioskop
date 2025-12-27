@@ -2,25 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Lead;
 use Illuminate\Http\Request;
 
 class PipelineController extends Controller
 {
+    /**
+     * Menampilkan visualisasi pipeline berdasarkan stage pada Lead
+     */
     public function index()
     {
-        // Dummy data 
-        $pipeline = [
-            'Open' => [
-                ['id'=>1,'title'=>'Gagal bayar','customer'=>'Andi'],
-                ['id'=>2,'title'=>'Voucher error','customer'=>'Siti'],
-            ],
-            'In Progress' => [
-                ['id'=>3,'title'=>'Refund belum masuk','customer'=>'Fajar'],
-            ],
-            'Resolved' => [
-                ['id'=>4,'title'=>'Tiket tidak muncul','customer'=>'Rina'],
-            ],
-        ];
+        $leads = Lead::with('customer')->get();
+
+        // Mengelompokkan lead berdasarkan stage
+        $pipeline = $leads->groupBy('stage');
 
         return view('backend.pipeline.index', compact('pipeline'));
     }

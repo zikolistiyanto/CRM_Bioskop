@@ -14,12 +14,12 @@
 
 {{-- Summary --}}
 <div class="row g-4 mb-4">
-    <div class="col-sm-6 col-xl-3">
+    <div class="col-sm-6 col-xl-4">
         <div class="card">
             <div class="card-body d-flex justify-content-between">
                 <div>
                     <span>Total Users</span>
-                    <h3 class="my-2">12</h3>
+                    <h3 class="my-2">{{ $totalUsers }}</h3>
                 </div>
                 <span class="avatar-initial rounded bg-label-primary">
                     <i class="ti ti-users ti-sm"></i>
@@ -28,12 +28,12 @@
         </div>
     </div>
 
-    <div class="col-sm-6 col-xl-3">
+    <div class="col-sm-6 col-xl-4">
         <div class="card">
             <div class="card-body d-flex justify-content-between">
                 <div>
                     <span>Admin</span>
-                    <h3 class="my-2">2</h3>
+                    <h3 class="my-2">{{ $adminCount }}</h3>
                 </div>
                 <span class="avatar-initial rounded bg-label-danger">
                     <i class="ti ti-shield ti-sm"></i>
@@ -42,12 +42,12 @@
         </div>
     </div>
 
-    <div class="col-sm-6 col-xl-3">
+    <div class="col-sm-6 col-xl-4">
         <div class="card">
             <div class="card-body d-flex justify-content-between">
                 <div>
                     <span>Customer Service</span>
-                    <h3 class="my-2">6</h3>
+                    <h3 class="my-2">{{ $csCount }}</h3>
                 </div>
                 <span class="avatar-initial rounded bg-label-info">
                     <i class="ti ti-headset ti-sm"></i>
@@ -67,31 +67,38 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>#</th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Role</th>
-                    <th>Status</th>
+                    <th>Joined At</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                {{-- Dummy --}}
+                @forelse($users as $user)
                 <tr>
-                    <td>1</td>
-                    <td>Admin CRM</td>
-                    <td>admin@crm.com</td>
-                    <td><span class="badge bg-danger">Admin</span></td>
-                    <td><span class="badge bg-success">Active</span></td>
+                    <td><strong>{{ $user->name }}</strong></td>
+                    <td>{{ $user->email }}</td>
+                    <td>
+                        <span class="badge bg-{{ $user->role == 'admin' ? 'danger' : ($user->role == 'cs' ? 'info' : 'primary') }}">
+                            {{ strtoupper($user->role) }}
+                        </span>
+                    </td>
+                    <td>{{ $user->created_at->format('d M Y') }}</td>
+                    <td>
+                        <a href="{{ route('users.show', $user->id) }}" class="btn btn-sm btn-primary">Detail</a>
+                    </td>
                 </tr>
+                @empty
                 <tr>
-                    <td>2</td>
-                    <td>Rina CS</td>
-                    <td>rina@crm.com</td>
-                    <td><span class="badge bg-info">CS</span></td>
-                    <td><span class="badge bg-success">Active</span></td>
+                    <td colspan="5" class="text-center">No users found.</td>
                 </tr>
+                @endforelse
             </tbody>
         </table>
+    </div>
+    <div class="card-footer">
+        {{ $users->links() }}
     </div>
 </div>
 
