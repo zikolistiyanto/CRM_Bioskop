@@ -32,7 +32,7 @@
             </div>
             <div class="card-body mt-3">
 
-                <form action="{{ route('ticket.updateStatus', $ticket->id) }}" method="POST">
+                <form action="{{ route('tickets.updateStatus', $ticket->id) }}" method="POST">
                     @csrf
                     @method('PUT')
 
@@ -78,7 +78,7 @@
             <div class="col-sm-6">
                 <p><strong>Phone:</strong> {{ $ticket->customer->phone ?? '-' }}</p>
                 <p class="mb-0">
-                    <a href="{{ route('customer.show', $ticket->customer_id) }}" class="btn btn-sm btn-outline-primary">
+                    <a href="{{ route('customers.show', $ticket->customer_id) }}" class="btn btn-sm btn-outline-primary">
                         View Customer Profile
                     </a>
                 </p>
